@@ -33,98 +33,35 @@
     Please post support questions to the FreakLabs forum.
 
 *******************************************************************/
-/*!
-    \file freakz.h
-    \ingroup misc
-    \brief Main Freakz header file
-
-    The main header file for this stack.
-*/
 /*******************************************************************
-    A smorgasbord of Zigbee files.
-// have Ash get dirty felix sleepy now
+    Author: Christopher Wang
+
+    Title:
+
+    Description:
 *******************************************************************/
-#ifndef FREAKZ_H
-#define FREAKZ_H
 
-#if (FREAKZ_DEBUG)
-	#include <stdio.h>
-#endif
+#ifndef MAIN_H
+#define MAIN_H
 
-#include <string.h>
-#include <stdlib.h>
-#include <assert.h>
-
-#ifdef TEST_SIM
-	#include <unistd.h>
-	#include "test_sim.h"
-	#include "sim_drvr.h"
-	#define FREAKZ_DEBUG	1
-	#define DEBUG_FRMS	1
-	#define DEBUG_BUF	1
-	#define DEBUG_MAC	1
-	#define DEBUG_NWK	1
-	#define DEBUG_APS	1
-	#define DEBUG_ZDO	1
-	#define DEBUG_ZCL	1
-#endif
-
-#if ((TEST_RAVENUSB == 1) || (TEST_RAVEN == 1))
-	#include "drvr_avr_at86.h"
-	#define FREAKZ_DEBUG	1
-	#define DEBUG_FRMS	0
-	#define DEBUG_BUF	0
-	#define DEBUG_MAC	0
-	#define DEBUG_NWK	0
-	#define DEBUG_APS	0
-	#define DEBUG_ZDO	0
-	#define DEBUG_ZCL	0
-#endif
-
-#include "constants.h"
+#include <pthread.h>
 #include "types.h"
-#include "buf.h"
-#include "mem_heap.h"
-#include "mac.h"
-#include "dev_dbg.h"
-#include "zcl.h"
-#include "zdo.h"
-#include "af.h"
-#include "aps.h"
-#include "nwk.h"
-#include "mac_hw.h"
-#include "misc.h"
-#include "slow_clock.h"
-#include "mmem.h"
 
-/* MAC rx event */
-extern process_event_t event_mac_rx;
+#define BUFSIZE 128
+#define NAMESIZE 50
 
-/* Application Framework tx event */
-extern process_event_t event_af_tx;
+typedef struct _sim_node_t
+{
+	struct _sim_node_t	*next;
+	int		pid;
+	int		index;
+	U16		addr;
+	struct pipe_t	data_in;
+	struct pipe_t	data_out;
+	struct pipe_t	cmd_in;
+	struct pipe_t	cmd_out;
+	U8		buf[BUFSIZE];
+} sim_node_t;
 
-/* Application Framework rx event */
-extern process_event_t event_af_rx;
-
-/* Application Framework confirm event */
-extern process_event_t event_af_conf;
-
-/* Driver confirmation available */
-extern process_event_t event_drvr_conf;
-
-/* End dev bind request received */
-extern process_event_t event_ed_bind_req;
-
-/* End dev bind - clust match finished */
-extern process_event_t event_ed_bind_match;
-
-/* End dev bind - Unbind response received */
-extern process_event_t event_unbind_resp;
-
-typedef void (*data_sink_t)( U8 *data, U8 len );
-void freakz_register_data_sink( data_sink_t *sink );
-void freakz_deregister_data_sink();
-
-void freakz_init();
-
+sim_node_t *node_get();
 #endif
