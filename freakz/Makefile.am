@@ -1,13 +1,10 @@
 AUTOMAKE_OPTIONS = subdir-objects
 
-lib_LTLIBRARIES = libfreakz.la
+noinst_LIBRARIES = libfreakzfreakz.a
 
-# XXX: Poor software design habits. In source, all of these includes should really be qualified
-# e.g. #include "freakz/nwk/nwk.h" or simply "freakz/nwk.h"
- 
 AM_CFLAGS = -I$(top_srcdir)/include -I$(top_srcdir)/include/freakz @CONTIKI_CFLAGS@
 
-libfreakz_la_SOURCES = \
+libfreakzfreakz_a_SOURCES = \
   freakz.c \
   zcl/zcl.c \
   zcl/zcl_parse.c \

@@ -22,6 +22,7 @@ AC_CONFIG_FILES(
     Makefile
     freakz/Makefile
     include/Makefile
+    os/Makefile
 )
 
 AC_OUTPUT
