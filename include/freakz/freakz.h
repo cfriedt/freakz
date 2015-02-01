@@ -122,4 +122,5 @@ extern process_event_t event_ed_bind_match;
 extern process_event_t event_unbind_resp;
 
 void freakz_init();
+
 #endif

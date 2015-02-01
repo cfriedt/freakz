@@ -10,6 +10,12 @@ LT_INIT
 
 AC_PROG_LIBTOOL
 
+AC_ARG_ENABLE([debug],[AS_HELP_STRING([--enable-debug],[enable debug symbols])])
+AS_IF([test "x$enable_debug" = "xyes"], [
+    CFLAGS="${CFLAGS} -DFREAKZ_DEBUG=1 -DTEST_SIM=1 -O0 -g"
+    AC_SUBST(CFLAGS)
+])
+
 AC_ARG_WITH([contiki],[AS_HELP_STRING([--with-contiki=PATH],[path to Contiki source])])
 AS_IF([test x"$with_contiki" != x -a "x$with_contiki" != xno -a "x$with_contiki" != xyes],
   CONTIKI_PATH="$with_contiki"

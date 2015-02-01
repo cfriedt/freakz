@@ -66,6 +66,23 @@ DECL_WEAK_PET(_ed_bind_req);
 DECL_WEAK_PET(_ed_bind_match);
 DECL_WEAK_PET(_unbind_resp);
 
+FILE *fp __attribute__((weak)) = NULL;
+
+sim_node_t *node_get() __attribute__((weak));
+sim_node_t *node_get() {
+	DBG_PRINT("WEAKLY DEFINED node_get()!!!\n");
+	return NULL;
+}
+
+void sim_pipe_cmd_out(U8 *data, U8 len) __attribute__((weak));
+void sim_pipe_cmd_out(U8 *data, U8 len) {
+	DBG_PRINT("WEAKLY DEFINED sim_pipe_cmd_out()!!!\n");
+}
+void test_app_init() __attribute__((weak));
+void test_app_init() {
+	DBG_PRINT("IN WEAKLY DEFINED test_app_init()!!!\n");
+}
+
 /* Dummy function that just initializes everybody. */
 void freakz_init()
 {

@@ -11,10 +11,6 @@ libfreakzfreakz_a_SOURCES = \
   af/af_conf_tbl.c \
   af/af_rx.c \
   af/af_tx.c \
-  app/test_app.c \
-  app/test_data.c \
-  app/test_zcl.c \
-  app/test_zdo.c \
   aps/aps.c \
   aps/aps_gen.c \
   aps/aps_parse.c \

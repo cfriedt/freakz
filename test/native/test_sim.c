@@ -251,5 +251,6 @@ int main(int argc, char *argv[])
 	sim_pipe_cmd_out((U8 *)msg, strlen(msg) + 1);
 
 	contiki_main();
+
 	return 0;
 }
