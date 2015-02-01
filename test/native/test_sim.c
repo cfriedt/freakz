@@ -109,7 +109,7 @@ static void *sim_cmd_in_thread(void *dummy)
 }
 
 /* Send the tx to the data_out pipe */
-static void sim_pipe_data_out(U8 *data, U8 len)
+void sim_pipe_data_out(U8 *data, U8 len)
 {
 	if (write(node.data_out.pipe, data, len) == -1)
 		perror("sim_pipe_data_out");
@@ -250,11 +250,7 @@ int main(int argc, char *argv[])
 	format_cmd_str((U8 *)msg);
 	sim_pipe_cmd_out((U8 *)msg, strlen(msg) + 1);
 
-	freakz_register_data_sink( sim_pipe_data_out );
-
 	contiki_main();
-
-	freakz_deregister_data_sink();
 
 	return 0;
 }

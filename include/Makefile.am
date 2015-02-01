@@ -1,9 +1,10 @@
-freakzincludedir = $(includedir)/freakz
-
-freakzinclude_HEADERS = \
+nobase_include_HEADERS = \
   freakz/af.h \
   freakz/aps.h \
   freakz/buf.h \
+  freakz/constants.h \
+  freakz/contiki-conf.h \
+  freakz/contiki-main.h \
   freakz/dev_dbg.h \
   freakz/freakz.h \
   freakz/mac.h \
@@ -12,11 +13,8 @@ freakzinclude_HEADERS = \
   freakz/mem_pool.h \
   freakz/misc.h \
   freakz/nwk.h \
+  freakz/sim_drvr.h \
   freakz/slow_clock.h \
-  freakz/test_app.h \
-  freakz/test_data.h \
-  freakz/test_zcl.h \
-  freakz/test_zdo.h \
   freakz/types.h \
   freakz/zcl.h \
   freakz/zcl_basic.h \

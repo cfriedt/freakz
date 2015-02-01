@@ -121,10 +121,6 @@ extern process_event_t event_ed_bind_match;
 /* End dev bind - Unbind response received */
 extern process_event_t event_unbind_resp;
 
-typedef void (*data_sink_t)( U8 *data, U8 len );
-void freakz_register_data_sink( data_sink_t *sink );
-void freakz_deregister_data_sink();
-
 void freakz_init();
 
 #endif

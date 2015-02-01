@@ -197,15 +197,6 @@ U8 drvr_read_tx_buf(U8 *buf)
 }
 
 
-static data_sink_t data_sink;
-
-void freakz_register_data_sink( data_sink_t *sink ) {
-	data_sink = sink;
-}
-void freakz_deregister_data_sink() {
-	data_sink = NULL;
-}
-
 /*
  * Simulates the sending of data. For the sim interface, the transmission of
  * data means that the data gets sent into the pipe whose destination is
@@ -216,9 +207,7 @@ U8 drvr_tx(const buffer_t *buf)
 	DBG_PRINT_RAW("DRVR_TX: ");
 	debug_dump_buf(buf->dptr, buf->len);
 	tx_len = buf->len;
-	if ( NULL != data_sink ) {
-		data_sink( buf->dptr, buf->len );
-	}
+	sim_pipe_cmd_out( buf->dptr, buf->len );
 
 	DBG_PRINT("TEST_DRIVER: Frame transmitted.\n");
 	return 1;

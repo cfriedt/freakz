@@ -70,6 +70,7 @@ typedef struct _sim_node_t
 	U8		buf[BUFSIZE];
 } sim_node_t;
 
+void sim_pipe_data_out(U8 *data, U8 len);
 void sim_pipe_cmd_out(U8 *data, U8 len);
 sim_node_t *node_get();
 #endif

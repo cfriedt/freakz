@@ -121,13 +121,26 @@ void test_app_init()
 	test_data_init();
 }
 
+static void strip_trailing_newlines( char *x ) {
+	int i;
+	for( i = strlen(x)-1; i >= 0; i-- ) {
+		if ( '\r' == x[i] || '\n' == x[i] ) {
+			x[i] = '\0';
+		} else {
+			break;
+		}
+	}
+}
+
 void test_app_parse(char *data)
 {
 	U8 argc, i = 0;
 	char *argv[30];
 
+	strip_trailing_newlines( data );
+
 	DBG_PRINT("/-----------------/\n");
-	DBG_PRINT("CMD: %s\n", data);
+	DBG_PRINT("CMD: '%s'\n", data);
 	DBG_PRINT("/-----------------/\n");
 	fflush(stdout);
 

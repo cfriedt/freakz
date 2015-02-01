@@ -59,32 +59,32 @@ extern FILE *fp;
 
 #if (TEST_SIM)
 
-#define DBG_PRINT(...)						\
-	do {							\
-		mac_pib_t *pib = mac_pib_get();			\
-		printf("<Addr: %04X>", pib->short_addr);	\
-		printf(__VA_ARGS__);				\
-		fflush(stdout);					\
+#define DBG_PRINT(...)									\
+	do {												\
+		mac_pib_t *pib = mac_pib_get();					\
+		printf("<Addr: %04X>", pib->short_addr);		\
+		printf(__VA_ARGS__);							\
+		fflush(stdout);									\
 		fprintf(fp, "<Addr: %04X> ", pib->short_addr);	\
-		fprintf(fp, __VA_ARGS__);			\
+		fprintf(fp, __VA_ARGS__);						\
+		fflush(fp);										\
+	} while(0)
+
+#define DBG_PRINT_RAW(...)			\
+	do {							\
+		printf(__VA_ARGS__);		\
+		fflush(stdout);				\
+		fprintf(fp, __VA_ARGS__);	\
 		fflush(fp);					\
-	} while(0);
+	} while(0)
 
-#define DBG_PRINT_RAW(...)				\
-	do {						\
-		printf(__VA_ARGS__);			\
+#define DBG_PRINT_SIMONLY(...)		\
+	do {							\
+		printf(__VA_ARGS__);		\
 		fflush(stdout);				\
-		fprintf(fp, __VA_ARGS__);		\
-		fflush(fp);				\
-	} while(0);
-
-#define DBG_PRINT_SIMONLY(...)				\
-	do {						\
-		printf(__VA_ARGS__);			\
-		fflush(stdout);				\
-		fprintf(fp, __VA_ARGS__);		\
-		fflush(fp);				\
-	} while (0);
+		fprintf(fp, __VA_ARGS__);	\
+		fflush(fp);					\
+	} while (0)
 
 #else
 #define DBG_PRINT(...)		printf(__VA_ARGS__)

@@ -12,7 +12,7 @@ AC_PROG_LIBTOOL
 
 AC_ARG_ENABLE([debug],[AS_HELP_STRING([--enable-debug],[enable debug symbols])])
 AS_IF([test "x$enable_debug" = "xyes"], [
-    CFLAGS="${CFLAGS} -O0 -g"
+    CFLAGS="${CFLAGS} -DFREAKZ_DEBUG=1 -DTEST_SIM=1 -O0 -g"
     AC_SUBST(CFLAGS)
 ])
 

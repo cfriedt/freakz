@@ -83,7 +83,7 @@ int contiki_main(void)
 		 * 第三. timeout的值大于0, 这就是等待的超时时间, 即select在timeout时间内阻塞,
 		 * 超时时间之内有事件到来就返回了, 否则在超时后不管怎样一定返回, 返回值同上述
 		 */
-		select(0, NULL, NULL, NULL, &tv);
+		int select_r = select(0, NULL, NULL, NULL, &tv);
 		etimer_request_poll();
 	}
 
